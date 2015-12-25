@@ -1,26 +1,28 @@
 {
   "name": "super-secret-santa",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Organize secret santa texts from the command line",
-  "main": "santa.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "MIT",
+  "repository": "mguida22/super-secret-santa",
+  "author": {
+    "name": "Michael Guida",
+    "email": "michael.guida@colorado.edu",
+    "url": "mguida22.github.io"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mguida22/super-secret-santa.git"
+  "bin": {
+    "super-secret-santa": "santa.js"
   },
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "santa.js"
+  ],
   "keywords": [
     "secret",
     "santa",
     "text"
   ],
-  "author": "mguida22",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mguida22/super-secret-santa/issues"
-  },
-  "homepage": "https://github.com/mguida22/super-secret-santa#readme",
   "dependencies": {
     "dotenv": "^1.2.0",
     "inquirer": "^0.11.0",

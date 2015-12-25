@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 "use strict";
 
 require('dotenv').config({silent: true});
 
 const inquirer = require('inquirer');
 
-let client
+let client;
 if (process.env.NODE_ENV === 'production') {
   client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 }
