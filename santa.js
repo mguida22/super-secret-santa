@@ -1,13 +1,46 @@
 "use strict";
 
+require('dotenv').config({silent: true});
+
 const inquirer = require('inquirer');
 
-function message(people) {
-  // send texts from here
-  console.log(people);
+let client
+if (process.env.NODE_ENV === 'production') {
+  client = require('twilio')(process.env.ACCOUNT_SID, process.env.AUTH_TOKEN);
 }
 
-function assign(people, numbers) {
+function send(people, price) {
+  let name, forName, text;
+  for (let number in people) {
+    name = people[number].name;
+    forName = people[number].santaFor.name;
+    if (!name || !forName || !price) {
+      console.error("Incomplete info");
+      return;
+    }
+
+    text = `Hi ${name}, you have ${forName}. The price limit is $${price}. Happy Holidays from super-secret-santa!`;
+
+    if (process.env.NODE_ENV === 'production') {
+      // only text in production
+      client.messages.create({
+      	to: number,
+      	from: process.env.PHONE_NUMBER,
+      	body: text,
+      }, function(err, message) {
+        if (err) {
+          return console.error(err);
+        }
+        // print messages sent
+        // console.log(message.body);
+      });
+    } else {
+      console.log(text);
+    }
+  };
+}
+
+function assign(people, numbers, price) {
   // randomization of array adapted from http://stackoverflow.com/a/2450976
   let currentIndex = numbers.length;
   let temporaryValue, randomIndex;
@@ -31,7 +64,7 @@ function assign(people, numbers) {
     name: people[numbers[0]].name
   };
 
-  message(people);
+  send(people, price);
 }
 
 console.log("Welcome to super-secret-santa!");
@@ -72,7 +105,17 @@ function ask() {
     if (answers.again) {
       ask();
     } else {
-      assign(people, numbers);
+      inquirer.prompt([
+        {
+          type: "list",
+          name: "price",
+          message: "Select a price (USD) limit",
+          choices: ["$ 10", "$ 15", "$ 20", "$ 30", "$ 50"],
+          filter: function(val) { return val.replace(/[^0-9]/g, ''); }
+        }
+      ], function(answers) {
+        assign(people, numbers, answers.price)
+      });
     }
   });
 }

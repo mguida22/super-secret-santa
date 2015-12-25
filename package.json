@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/mguida22/super-secret-santa#readme",
   "dependencies": {
-    "inquirer": "^0.11.0"
+    "dotenv": "^1.2.0",
+    "inquirer": "^0.11.0",
+    "twilio": "^2.8.0"
   }
 }
