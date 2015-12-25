@@ -1,0 +1,27 @@
+{
+  "name": "super-secret-santa",
+  "version": "1.0.0",
+  "description": "Organize secret santa texts from the command line",
+  "main": "santa.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mguida22/super-secret-santa.git"
+  },
+  "keywords": [
+    "secret",
+    "santa",
+    "text"
+  ],
+  "author": "mguida22",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mguida22/super-secret-santa/issues"
+  },
+  "homepage": "https://github.com/mguida22/super-secret-santa#readme",
+  "dependencies": {
+    "inquirer": "^0.11.0"
+  }
+}
